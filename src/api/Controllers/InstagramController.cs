@@ -1,30 +1,13 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 
 namespace mock_marketplace_content.Controllers
 {
     [ApiController]
-    [Route("api/content")]
-    public class SocialMediaContentController : ControllerBase
+    [Route("api/onthegram")]
+    public class InstagramController : ControllerBase
     {
-        private static readonly string[] _moments =
-        {
-            "https://jane.com/blog/aries-style-guide/",
-            "https://jane.com/blog/helgenbargenflergenflurfennerfen/",
-            "https://jane.com/blog/lemon-flower-fizz-trader-joes-hack/"
-        };
-
-        private static readonly string[] _momentImages = 
-        {
-            "https://jane.com/blog/wp-content/uploads/2021/04/Content-_-Horoscope-Fashion-Aries_FeatureImage_800x1200.jpg",
-            "https://jane.com/blog/wp-content/uploads/2021/04/CONTENT-Helgenbargenflergenflurfennerfen_FeatureImage_800x1200-1.jpg",
-            "https://jane.com/blog/wp-content/uploads/2021/04/CONTENT-Lemon-Flower-Fizz-Trader-Joes-Hack_FeatureImage_800x1200.jpg"
-        };
-
         private static readonly string[] _instagramPosts =
         {
             "https://www.instagram.com/p/COAwOb_jBl-/",
@@ -57,26 +40,7 @@ namespace mock_marketplace_content.Controllers
             "https://scontent-ort2-2.cdninstagram.com/v/t51.2885-15/sh0.08/e35/s750x750/175997324_1803319909836474_8826179533366884121_n.jpg?tp=1&_nc_ht=scontent-ort2-2.cdninstagram.com&_nc_cat=106&_nc_ohc=aUGXR0W5qegAX9C7lJA&edm=AABBvjUAAAAA&ccb=7-4&oh=c99e7577c2238351048c471b45762cd2&oe=60A716C4&_nc_sid=83d603"
         };
 
-        [HttpGet("moments")]
-        [Produces("application/json")]
-        public IEnumerable<object> GetMoments()
-        {
-            var moments =
-                from id in Enumerable.Range(1, 3)
-                select new
-                {
-                    id,
-                    title = $"Title {id}",
-                    categories = Enumerable.Range(1, id),
-                    postUrl = _moments[id - 1],
-                    imageUrl = _momentImages[id - 1],
-                    altText = $"alt text for image {id}"
-                };
-
-            return moments;
-        }
-
-        [HttpGet("instagram")]
+        [HttpGet]
         [Produces("application/json")]
         public IEnumerable<object> GetInstagramPosts()
         {
